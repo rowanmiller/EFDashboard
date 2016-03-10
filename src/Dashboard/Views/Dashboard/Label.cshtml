@@ -1,11 +1,12 @@
 ﻿@model Dashboard.ViewModels.Dashboard.LabelViewModel
 @using Dashboard.ViewModels
+@{ ViewBag.Title = Model.Label; }
 
 <h1 class="text-center">@Model.Label</h1>
 <br />
 
-<div class="panel panel-default">
-    <div class="panel-heading text-center"><h4>Total issues</h4></div>
+<div class="panel panel-primary">
+    <div class="panel-heading text-center"><span style="font-size: large">Total issues</span></div>
     <div class="panel-body">
         <div class="text-center">
             <span style="font-size: 100pt">@Model.OpenIssueCount</span>
@@ -13,8 +14,8 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading text-center"><h4>Latest issues</h4></div>
+<div class="panel panel-primary">
+    <div class="panel-heading text-center"><span style="font-size: large">Latest issues</span></div>
     <div class="panel-body">
         <div class="list-group">
             @foreach (var issue in Model.LatestIssues)
