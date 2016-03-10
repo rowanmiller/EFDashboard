@@ -1,0 +1,49 @@
+﻿@model Dashboard.ViewModels.Dashboard.LabelViewModel
+@using Dashboard.ViewModels
+
+<h1 class="text-center">@Model.Label</h1>
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading text-center"><h4>Total issues</h4></div>
+    <div class="panel-body">
+        <div class="text-center">
+            <span style="font-size: 100pt">@Model.OpenIssueCount</span>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading text-center"><h4>Latest issues</h4></div>
+    <div class="panel-body">
+        <div class="list-group">
+            @foreach (var issue in Model.LatestIssues)
+            {
+                <a class="list-group-item" href="@issue.HtmlUrl">
+                    <div class="row">
+                        <div class="col-sm-1 text-center">
+                            <img src="@issue.User.AvatarUrl" width="75" />
+                            <br />
+                            Filed by
+                            <strong>@issue.User.Login.TrimForDisplay(11)</strong>
+                        </div>
+                        <div class="col-sm-10">
+                            <h4 class="list-group-item-heading">#@issue.Number @issue.Title</h4>
+                            <p class="list-group-item-text">
+                                <em>@issue.Body.TrimForDisplay(500)</em>
+                            </p>
+                        </div>
+                        <div class="col-sm-1 text-center">
+                            @if (issue.Assignee != null)
+                            {
+                                <img src="@issue.Assignee.AvatarUrl" width="75" />
+                                <br />
+                                <span>Assignee <strong>@issue.Assignee.Login.TrimForDisplay(11)</strong></span>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
